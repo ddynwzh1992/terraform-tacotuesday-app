@@ -3,13 +3,6 @@
 
 terraform {
 
-  cloud {
-    organization = "TacoTuesday"
-    workspaces {
-      name = "learn-terraform-eks-dev"
-    }
-  }
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
