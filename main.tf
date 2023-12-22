@@ -70,7 +70,7 @@ module "eks" {
     one = {
       name = "node-group-1"
 
-      instance_types = ["t4g.small"]
+      instance_types = ["c5.large"]
 
       min_size     = 1
       max_size     = 3
