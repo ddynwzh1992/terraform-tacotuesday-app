@@ -16,6 +16,8 @@ data "aws_availability_zones" "available" {
 
 locals {
   cluster_name = "education-eks-${random_string.suffix.result}"
+  Workspace = terraform.workspace
+  Environment = var.environment
 }
 
 resource "random_string" "suffix" {
