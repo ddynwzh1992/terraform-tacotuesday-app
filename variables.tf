@@ -8,5 +8,5 @@ variable "region" {
 
 variable "environment" {
   description = "value"
-  type = string
+  type        = string
 }
