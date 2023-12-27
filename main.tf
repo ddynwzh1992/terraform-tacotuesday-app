@@ -16,8 +16,11 @@ data "aws_availability_zones" "available" {
 
 locals {
   cluster_name = "education-eks-${random_string.suffix.result}"
-  Workspace    = terraform.workspace
-  Environment  = var.environment
+  common_tags = {
+    Workspace   = terraform.workspace
+    Environment = var.environment
+  }
+
 }
 
 resource "random_string" "suffix" {
@@ -44,12 +47,15 @@ module "vpc" {
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = 1
+
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = 1
   }
+
+  tags = local.common_tags
 }
 
 module "eks" {
